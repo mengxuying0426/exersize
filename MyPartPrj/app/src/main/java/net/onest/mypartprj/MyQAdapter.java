@@ -10,7 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-import net.onest.mypartprj.exersise.QuestionBank;
+import net.onest.mypartprj.beans.QuestionBank;
 
 import java.util.List;
 
@@ -60,11 +60,22 @@ public class MyQAdapter extends BaseAdapter {
             holder.tvTiNum = view.findViewById(R.id.tv_ti_num);
             holder.btnStartTi = view.findViewById(R.id.btn_start_ti);
             view.setTag(holder);
+            holder.tvKemu.setText(mQList.get(position).getCourse());
+            holder.tvTiNum.setText(mQList.get(position).getNum()+"");
+            Log.i("mxy",mQList.get(position).getCourse()+mQList.get(position).getNum());
+            holder.btnStartTi.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    intent.setClass(myContext, ExerciseActivity.class);
+                    myContext.startActivity(intent);
+                }
+            });
         }else{
             view = convertView;
             holder = (ViewHolder) view.getTag();
             holder.tvKemu.setText(mQList.get(position).getCourse());
-            holder.tvTiNum.setText(mQList.get(position).getNum());
+            holder.tvTiNum.setText(mQList.get(position).getNum()+"");
             Log.i("mxy",mQList.get(position).getCourse()+mQList.get(position).getNum());
             holder.btnStartTi.setOnClickListener(new View.OnClickListener() {
                 @Override

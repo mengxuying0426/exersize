@@ -7,6 +7,8 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import net.onest.mypartprj.utils.NoScrollViewPager;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +30,5 @@ public class ExerciseActivity extends AppCompatActivity {
         myViewList.add(view1);
         myViewList.add(view2);
         viewPager.setAdapter(new MyPager(myViewList));
-        viewPager.setPageTransformer(true, new DepthPageTransformer());
     }
 }

@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
+
+
 import java.util.List;
 
 public class MyPager extends PagerAdapter {

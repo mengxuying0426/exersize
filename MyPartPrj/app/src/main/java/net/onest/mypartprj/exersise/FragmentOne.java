@@ -19,6 +19,7 @@ import com.baoyz.swipemenulistview.SwipeMenuListView;
 
 import net.onest.mypartprj.MyQAdapter;
 import net.onest.mypartprj.R;
+import net.onest.mypartprj.beans.QuestionBank;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +64,14 @@ public class FragmentOne extends Fragment {
         swipeMenuListView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+                QuestionBank q = mQList.get(position);
+                switch (index){
+                    case 0:
+//                        delete(q);数据库中删除
+                        mQList.remove(position);
+                        myQAdapter.notifyDataSetChanged();
+                        break;
+                }
                 return true;
             }
         });
@@ -79,20 +88,20 @@ public class FragmentOne extends Fragment {
             }
         });
         //设置一些死数据
-        List<QuestionBank> list = new ArrayList<>();
+        mQList = new ArrayList<>();
         QuestionBank q1 = new QuestionBank("中国近代史",3);
         QuestionBank q2 = new QuestionBank("马克思主义理论",2);
         QuestionBank q3 = new QuestionBank("毛泽东思想",2);
         QuestionBank q4 = new QuestionBank("邓小平理论",2);
         QuestionBank q5 = new QuestionBank("新社会主义",2);
-        list.add(q1);
-        list.add(q2);
-        list.add(q3);
-        list.add(q4);
-        list.add(q5);
+        mQList.add(q1);
+        mQList.add(q2);
+        mQList.add(q3);
+        mQList.add(q4);
+        mQList.add(q5);
 
         //绑定Adapter
-        myQAdapter = new MyQAdapter(view.getContext(),list);
+        myQAdapter = new MyQAdapter(view.getContext(),mQList);
         swipeMenuListView.setAdapter(myQAdapter);
 
 
@@ -108,6 +117,7 @@ public class FragmentOne extends Fragment {
 
         return view;
     }
+
     public int dp2px(float dipValue) {
         final float scale = this.getResources().getDisplayMetrics().density;
         return (int) (dipValue * scale + 0.5f);

@@ -18,10 +18,11 @@ import com.google.android.material.tabs.TabLayout;
 
 import net.onest.mypartprj.MyFragmentPagerAdapter;
 import net.onest.mypartprj.R;
+import net.onest.mypartprj.utils.NoScrollViewPager;
 
 public class SecondFragment extends Fragment {
     private TabLayout mTabLayout;
-    private ViewPager mViewPager;
+    private NoScrollViewPager mViewPager;
 
     private MyFragmentPagerAdapter myFragmentPagerAdapter;
 
@@ -43,7 +44,8 @@ public class SecondFragment extends Fragment {
        view = inflater.inflate(R.layout.fragment_total,container,false);
 
         //获取内容页面当中空间的引用
-        mViewPager = (ViewPager)view.findViewById(R.id.viewPager);
+        mViewPager = view.findViewById(R.id.view_Pager);
+        mViewPager.setScanScroll(false);
         myFragmentPagerAdapter = new MyFragmentPagerAdapter(getFragmentManager());
         mViewPager.setAdapter(myFragmentPagerAdapter);
 
