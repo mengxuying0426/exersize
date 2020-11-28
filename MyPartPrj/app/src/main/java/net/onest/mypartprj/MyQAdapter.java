@@ -49,7 +49,7 @@ public class MyQAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         View view;
         if (convertView == null) {
@@ -68,6 +68,7 @@ public class MyQAdapter extends BaseAdapter {
                 public void onClick(View v) {
                     Intent intent = new Intent();
                     intent.setClass(myContext, ExerciseActivity.class);
+                    intent.putExtra("fenlei",mQList.get(position).getCourse()+"&"+mQList.get(position).getNum());
                     myContext.startActivity(intent);
                 }
             });

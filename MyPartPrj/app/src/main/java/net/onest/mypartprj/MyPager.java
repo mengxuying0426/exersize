@@ -14,6 +14,7 @@ import java.util.List;
 public class MyPager extends PagerAdapter {
 
     private List<View> myViewList;
+    private View mCurrentView;
 
     private final static String TAG = "MyPager";
 
@@ -34,7 +35,11 @@ public class MyPager extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        container.addView(myViewList.get(position));
+        final View view = myViewList.get(position);
+        if (view.getParent() != null) {
+            ((ViewGroup) view.getParent()).removeView(view);
+        }
+        container.addView(view);
         Log.d(TAG, "instantiateItem: " + myViewList.get(position));
         return myViewList.get(position);
     }
@@ -42,5 +47,14 @@ public class MyPager extends PagerAdapter {
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
 
+    }
+
+    @Override
+    public void setPrimaryItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+        mCurrentView = (View)object;
+    }
+
+    public View getPrimaryItem() {
+        return mCurrentView;
     }
 }
