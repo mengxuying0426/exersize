@@ -8,6 +8,7 @@ public class SingleChoice {
     private String optionD;
     private String correct;
     private String analysis;
+    private int keyNum;
 
     public String getStem() {
         return stem;
@@ -65,10 +66,18 @@ public class SingleChoice {
         this.analysis = analysis;
     }
 
+    public int getKeyNum() {
+        return keyNum;
+    }
+
+    public void setKeyNum(int keyNum) {
+        this.keyNum = keyNum;
+    }
+
     public SingleChoice() {
     }
 
-    public SingleChoice(String stem, String optionA, String optionB, String optionC, String optionD, String correct, String analysis) {
+    public SingleChoice(String stem, String optionA, String optionB, String optionC, String optionD, String correct, String analysis, int keyNum) {
         this.stem = stem;
         this.optionA = optionA;
         this.optionB = optionB;
@@ -76,6 +85,7 @@ public class SingleChoice {
         this.optionD = optionD;
         this.correct = correct;
         this.analysis = analysis;
+        this.keyNum = keyNum;
     }
 
     @Override
@@ -88,6 +98,7 @@ public class SingleChoice {
                 ", optionD='" + optionD + '\'' +
                 ", correct='" + correct + '\'' +
                 ", analysis='" + analysis + '\'' +
+                ", keyNum=" + keyNum +
                 '}';
     }
 }

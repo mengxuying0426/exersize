@@ -2,14 +2,19 @@ package net.onest.mypartprj;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -17,6 +22,7 @@ import androidx.viewpager.widget.ViewPager;
 import net.onest.mypartprj.beans.QuestionBank;
 import net.onest.mypartprj.beans.SingleChoice;
 import net.onest.mypartprj.utils.NoScrollViewPager;
+import net.onest.mypartprj.utils.ScaleAnimatorUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,12 +42,28 @@ public class ExerciseActivity extends Activity {
     private LinearLayout llOptB;
     private LinearLayout llOptC;
     private LinearLayout llOptD;
+    private ImageView ivMore;
+    private ImageView ivOpt1;
+    private ImageView ivOpt2;
+    private ImageView ivOpt3;
+    private ImageView ivOpt4;
+    private ImageView ivShoucang;
+    private ImageView ivCuoti;
+    private LinearLayout llShoucang;
+    private LinearLayout llCuoti;
 //    private DynamicFragmentAdapter dynamicFragmentAdapter;
 //    private List<Fragment> mFragments;
     private List<SingleChoice> singleChoices;
     private List<View> myViewList;
-
-
+    private CommonPopupWindow window;
+    private TextView tvShoucang;
+    private TextView tvCuoti;
+    private CommonPopupWindow.LayoutGravity layoutGravity;
+    private int keyNum = 0;
+    private boolean keyNumA = false;
+    private boolean keyNumB = false;
+    private boolean keyNumC = false;
+    private boolean keyNumD = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +79,7 @@ public class ExerciseActivity extends Activity {
         for(int i = 0;i<num;i++){
             SingleChoice s = new SingleChoice("蔡徐坤的应援色是()"+i,"红色"+i,"蓝色"+i,"粉色"+i,"金色"+i,"D",
                     "掉落人间 你像丘比特赐予我的首选 靠在枕边 ah光绕过你天使般的脸 ah这感觉实在太危险 能否再对我温柔一点点 不忍心再带你去冒险,掉落人间 你像丘比特赐予我的首选 靠在枕边 ah光绕过你天使般的脸 ah这感觉实在太危险 能否再对我温柔一点点 不忍心再带你去冒险,掉落人间 你像丘比特赐予我的首选 靠在枕边 ah光绕过你天使般的脸 ah这感觉实在太危险 " +
-                            "能否再对我温柔一点点 不忍心再带你去冒险掉落人间 你像丘比特赐予我的首选 靠在枕边 ah光绕过你天使般的脸 ah这感觉实在太危险 能否再对我温柔一点点 不忍心再带你去冒险");
+                            "能否再对我温柔一点点 不忍心再带你去冒险掉落人间 你像丘比特赐予我的首选 靠在枕边 ah光绕过你天使般的脸 ah这感觉实在太危险 能否再对我温柔一点点 不忍心再带你去冒险",2);
             singleChoices.add(s);
         }
         mViewPager = findViewById(R.id.in_viewpager);
@@ -97,6 +119,13 @@ public class ExerciseActivity extends Activity {
                         if(mPosition<singleChoices.size()-1){
                             View view = myViewList.get(mPosition+1);
                             initView(view,singleChoices.get(mPosition+1));
+                            ivShoucang.setImageResource(R.drawable.shoucang);
+                            ivCuoti.setImageResource(R.drawable.cuoti);
+                            keyNum=0;
+                            keyNumA=false;
+                            keyNumB=false;
+                            keyNumC=false;
+                            keyNumD=false;
                             setViewListener();
                         }
                         break;
@@ -110,9 +139,36 @@ public class ExerciseActivity extends Activity {
             }
         });
         View view = myViewList.get(mPosition);
-
         initView(view,singleChoices.get(mPosition));
         setViewListener();
+
+        //更多（包含收藏和加入错题集）
+        window = new CommonPopupWindow(this,R.layout.popup_gravity,500, ViewGroup.LayoutParams.WRAP_CONTENT) {
+            @Override
+            protected void initView() {
+                View view=getContentView();
+                tvCuoti = view.findViewById(R.id.tv_cuoti);
+                tvShoucang = view.findViewById(R.id.tv_shoucang);
+                ivShoucang = view.findViewById(R.id.iv_shoucang);
+                ivCuoti = view.findViewById(R.id.iv_cuoti);
+                llCuoti = view.findViewById(R.id.ll_cuoti);
+                llShoucang = view.findViewById(R.id.ll_shoucang);
+                ivShoucang.setSelected(false);
+                ivCuoti.setSelected(false);
+                llShoucang.setOnClickListener(new MyListener());
+                llCuoti.setOnClickListener(new MyListener());
+            }
+
+            @Override
+            protected void initEvent() {
+
+            }
+        };
+
+        layoutGravity = new CommonPopupWindow.LayoutGravity(CommonPopupWindow.LayoutGravity.CENTER_HORI);
+
+
+
 
     }
 
@@ -122,6 +178,7 @@ public class ExerciseActivity extends Activity {
         llOptB.setOnClickListener(listener);
         llOptC.setOnClickListener(listener);
         llOptD.setOnClickListener(listener);
+        ivMore.setOnClickListener(listener);
     }
 
     private void initView(View view,SingleChoice singleChoice) {
@@ -134,6 +191,13 @@ public class ExerciseActivity extends Activity {
         llOptB = view.findViewById(R.id.ll_optB);
         llOptC = view.findViewById(R.id.ll_optC);
         llOptD = view.findViewById(R.id.ll_optD);
+        ivMore = findViewById(R.id.iv_more);
+        ivOpt1 = view.findViewById(R.id.iv_opt1);
+        ivOpt2 = view.findViewById(R.id.iv_opt2);
+        ivOpt3 = view.findViewById(R.id.iv_opt3);
+        ivOpt4 = view.findViewById(R.id.iv_opt4);
+//        ivCuoti = view.findViewById(R.id.iv_cuoti);
+//        ivShoucang = view.findViewById(R.id.iv_shoucang);
         tvAnTitle = view.findViewById(R.id.tv_antitle);
         tvAnalysis = view.findViewById(R.id.tv_analysis);
         currentOpt = singleChoice.getCorrect();
@@ -147,63 +211,234 @@ public class ExerciseActivity extends Activity {
 
     class MyListener implements View.OnClickListener{
 
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         @Override
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.ll_optA:
+                    if(keyNumA==false){
+                        keyNumA=true;
+                        tvOptA.setTextColor(ExerciseActivity.this.getResources().getColor(R.color.colorSel));
+                        keyNum++;
+                    }else{
+                        keyNumA=false;
+                        tvOptA.setTextColor(ExerciseActivity.this.getResources().getColor(R.color.colorNoSel));
+                        keyNum--;
+                    }
+                    if(keyNum==singleChoices.get(mPosition).getKeyNum()){
+                        Log.i("mxy","点击完毕A");
+                        judgmentOpt();
+                    }
                     Log.i("mxy","点击了A");
-                    judgmentOpt();
                     break;
                 case R.id.ll_optB:
-                    judgmentOpt();
+                    if(keyNumB==false){
+                        keyNumB=true;
+                        tvOptB.setTextColor(ExerciseActivity.this.getResources().getColor(R.color.colorSel));
+                        keyNum++;
+                    }else{
+                        keyNumB=false;
+                        tvOptB.setTextColor(ExerciseActivity.this.getResources().getColor(R.color.colorNoSel));
+                        keyNum--;
+                    }
+                    if(keyNum==singleChoices.get(mPosition).getKeyNum()){
+                        Log.i("mxy","点击完毕B");
+                        judgmentOpt();
+                    }
                     break;
                 case R.id.ll_optC:
-                    judgmentOpt();
+                    if(keyNumC==false){
+                        keyNumC=true;
+                        tvOptC.setTextColor(ExerciseActivity.this.getResources().getColor(R.color.colorSel));
+                        keyNum++;
+                    }else{
+                        keyNumC=false;
+                        tvOptC.setTextColor(ExerciseActivity.this.getResources().getColor(R.color.colorNoSel));
+                        keyNum--;
+                    }
+                    if(keyNum==singleChoices.get(mPosition).getKeyNum()){
+                        Log.i("mxy","点击完毕C");
+                        judgmentOpt();
+                    }
                     break;
                 case R.id.ll_optD:
-                    judgmentOpt();
+                    if(keyNumD==false){
+                        keyNumD=true;
+                        tvOptD.setTextColor(ExerciseActivity.this.getResources().getColor(R.color.colorSel));
+                        keyNum++;
+                    }else{
+                        keyNumD=false;
+                        tvOptD.setTextColor(ExerciseActivity.this.getResources().getColor(R.color.colorNoSel));
+                        keyNum--;
+                    }
+                    if(keyNum==singleChoices.get(mPosition).getKeyNum()){
+                        Log.i("mxy","点击完毕D");
+                        judgmentOpt();
+                    }
+                    break;
+                case R.id.iv_more:
+                    window.showBashOfAnchor(ivMore,layoutGravity,0,0);
+                    break;
+                case R.id.ll_shoucang:
+                    if(ivShoucang.isSelected()==false){
+                        ivShoucang.setImageResource(R.drawable.shoucangok);
+                        ivShoucang.setSelected(true);
+                        ScaleAnimatorUtils.setScalse(ivShoucang);
+                        Toast.makeText(ExerciseActivity.this,"收藏成功",Toast.LENGTH_SHORT).show();
+                    }else {
+                        ivShoucang.setImageResource(R.drawable.shoucang);
+                        ivShoucang.setSelected(false);
+                        Toast.makeText(ExerciseActivity.this,"取消收藏",Toast.LENGTH_SHORT).show();
+                    }
+
+                    Log.i("mxy收藏posion",""+mPosition);
+
+                    break;
+                case R.id.ll_cuoti:
+                    if(ivCuoti.isSelected()==false){
+                        ivCuoti.setImageResource(R.drawable.cuotiok);
+                        ivCuoti.setSelected(true);
+                        ScaleAnimatorUtils.setScalse(ivCuoti);
+                        Toast.makeText(ExerciseActivity.this,"加入错题成功",Toast.LENGTH_SHORT).show();
+                    }else {
+                        ivCuoti.setImageResource(R.drawable.cuoti);
+                        ivCuoti.setSelected(false);
+                        Toast.makeText(ExerciseActivity.this,"取消添加",Toast.LENGTH_SHORT).show();
+                    }
                     break;
 
             }
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void judgmentOpt() {
         switch (currentOpt){
             case "A":
-                llOptA.setBackgroundColor(ExerciseActivity.this.getResources().getColor(R.color.colorOk));
-                llOptB.setBackgroundColor(ExerciseActivity.this.getResources().getColor(R.color.colorErr));
-                llOptC.setBackgroundColor(ExerciseActivity.this.getResources().getColor(R.color.colorErr));
-                llOptD.setBackgroundColor(ExerciseActivity.this.getResources().getColor(R.color.colorErr));
+                ivOpt1.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes));
+                ivOpt2.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.no));
+                ivOpt3.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.no));
+                ivOpt4.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.no));
                 tvAnTitle.setText("解析：");
                 tvAnalysis.setText(singleChoices.get(mPosition).getAnalysis());
                 break;
             case "B":
-                llOptA.setBackgroundColor(ExerciseActivity.this.getResources().getColor(R.color.colorErr));
-                llOptB.setBackgroundColor(ExerciseActivity.this.getResources().getColor(R.color.colorOk));
-                llOptC.setBackgroundColor(ExerciseActivity.this.getResources().getColor(R.color.colorErr));
-                llOptD.setBackgroundColor(ExerciseActivity.this.getResources().getColor(R.color.colorErr));
+                ivOpt1.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.no));
+                ivOpt2.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes));
+                ivOpt3.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.no));
+                ivOpt4.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.no));
                 tvAnTitle.setText("解析：");
                 tvAnalysis.setText(singleChoices.get(mPosition).getAnalysis());
                 break;
             case "C":
-                llOptA.setBackgroundColor(ExerciseActivity.this.getResources().getColor(R.color.colorErr));
-                llOptB.setBackgroundColor(ExerciseActivity.this.getResources().getColor(R.color.colorErr));
-                llOptC.setBackgroundColor(ExerciseActivity.this.getResources().getColor(R.color.colorOk));
-                llOptD.setBackgroundColor(ExerciseActivity.this.getResources().getColor(R.color.colorErr));
+                ivOpt1.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.no));
+                ivOpt2.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.no));
+                ivOpt3.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes));
+                ivOpt4.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.no));
                 tvAnTitle.setText("解析：");
                 tvAnalysis.setText(singleChoices.get(mPosition).getAnalysis());
                 break;
             case "D":
                 Log.i("mxy","正确答案是D");
-                llOptA.setBackgroundColor(ExerciseActivity.this.getResources().getColor(R.color.colorErr));
-                llOptB.setBackgroundColor(ExerciseActivity.this.getResources().getColor(R.color.colorErr));
-                llOptC.setBackgroundColor(ExerciseActivity.this.getResources().getColor(R.color.colorErr));
-                llOptD.setBackgroundColor(ExerciseActivity.this.getResources().getColor(R.color.colorOk));
+                ivOpt1.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.no,null));
+                ivOpt2.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.no,null));
+                ivOpt3.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.no,null));
+                ivOpt4.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes,null));
+                tvAnTitle.setText("解析：");
+                tvAnalysis.setText(singleChoices.get(mPosition).getAnalysis());
+                break;
+            case "AB":
+                Log.i("mxy","正确答案是AB");
+                ivOpt1.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes,null));
+                ivOpt2.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes,null));
+                ivOpt3.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.no,null));
+                ivOpt4.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.no,null));
+                tvAnTitle.setText("解析：");
+                tvAnalysis.setText(singleChoices.get(mPosition).getAnalysis());
+                break;
+            case "AC":
+                Log.i("mxy","正确答案是AC");
+                ivOpt1.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes,null));
+                ivOpt2.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.no,null));
+                ivOpt3.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes,null));
+                ivOpt4.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.no,null));
+                tvAnTitle.setText("解析：");
+                tvAnalysis.setText(singleChoices.get(mPosition).getAnalysis());
+                break;
+            case "AD":
+                Log.i("mxy","正确答案是AD");
+                ivOpt1.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes,null));
+                ivOpt2.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.no,null));
+                ivOpt3.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.no,null));
+                ivOpt4.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes,null));
+                tvAnTitle.setText("解析：");
+                tvAnalysis.setText(singleChoices.get(mPosition).getAnalysis());
+                break;
+            case "ABC":
+                Log.i("mxy","正确答案是ABC");
+                ivOpt1.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes,null));
+                ivOpt2.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes,null));
+                ivOpt3.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes,null));
+                ivOpt4.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.no,null));
+                tvAnTitle.setText("解析：");
+                tvAnalysis.setText(singleChoices.get(mPosition).getAnalysis());
+                break;
+            case "ABD":
+                Log.i("mxy","正确答案是ABD");
+                ivOpt1.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes,null));
+                ivOpt2.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes,null));
+                ivOpt3.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.no,null));
+                ivOpt4.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes,null));
+                tvAnTitle.setText("解析：");
+                tvAnalysis.setText(singleChoices.get(mPosition).getAnalysis());
+                break;
+            case "ABCD":
+                Log.i("mxy","正确答案是ABCD");
+                ivOpt1.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes,null));
+                ivOpt2.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes,null));
+                ivOpt3.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes,null));
+                ivOpt4.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes,null));
+                tvAnTitle.setText("解析：");
+                tvAnalysis.setText(singleChoices.get(mPosition).getAnalysis());
+                break;
+            case "BC":
+                Log.i("mxy","正确答案是BC");
+                ivOpt1.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.no,null));
+                ivOpt2.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes,null));
+                ivOpt3.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes,null));
+                ivOpt4.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.no,null));
+                tvAnTitle.setText("解析：");
+                tvAnalysis.setText(singleChoices.get(mPosition).getAnalysis());
+                break;
+            case "BD":
+                Log.i("mxy","正确答案是BD");
+                ivOpt1.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.no,null));
+                ivOpt2.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes,null));
+                ivOpt3.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.no,null));
+                ivOpt4.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes,null));
+                tvAnTitle.setText("解析：");
+                tvAnalysis.setText(singleChoices.get(mPosition).getAnalysis());
+                break;
+            case "BCD":
+                Log.i("mxy","正确答案是BCD");
+                ivOpt1.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.no,null));
+                ivOpt2.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes,null));
+                ivOpt3.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes,null));
+                ivOpt4.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes,null));
+                tvAnTitle.setText("解析：");
+                tvAnalysis.setText(singleChoices.get(mPosition).getAnalysis());
+                break;
+            case "CD":
+                Log.i("mxy","正确答案是CD");
+                ivOpt1.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.no,null));
+                ivOpt2.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.no,null));
+                ivOpt3.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes,null));
+                ivOpt4.setImageDrawable(ExerciseActivity.this.getResources().getDrawable(R.drawable.yes,null));
                 tvAnTitle.setText("解析：");
                 tvAnalysis.setText(singleChoices.get(mPosition).getAnalysis());
                 break;
         }
+
     }
 
 
