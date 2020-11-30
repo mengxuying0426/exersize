@@ -46,7 +46,9 @@ public class MyPager extends PagerAdapter {
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-
+        View view = (View) object;
+        container.removeView(view);
+        view = null;
     }
 
     @Override
@@ -54,6 +56,10 @@ public class MyPager extends PagerAdapter {
         mCurrentView = (View)object;
     }
 
+    @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
+    }
     public View getPrimaryItem() {
         return mCurrentView;
     }

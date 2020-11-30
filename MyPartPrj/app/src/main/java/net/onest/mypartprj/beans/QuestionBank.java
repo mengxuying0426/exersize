@@ -3,6 +3,7 @@ package net.onest.mypartprj.beans;
 public class QuestionBank {
     private String course;
     private int num;
+    private int kemuSta;
 
     public String getCourse() {
         return course;
@@ -20,12 +21,21 @@ public class QuestionBank {
         this.num = num;
     }
 
+    public int getKemuSta() {
+        return kemuSta;
+    }
+
+    public void setKemuSta(int kemuSta) {
+        this.kemuSta = kemuSta;
+    }
+
     public QuestionBank() {
     }
 
-    public QuestionBank(String course, int num) {
+    public QuestionBank(String course, int num, int kemuSta) {
         this.course = course;
         this.num = num;
+        this.kemuSta = kemuSta;
     }
 
     @Override
@@ -33,6 +43,7 @@ public class QuestionBank {
         return "QuestionBank{" +
                 "course='" + course + '\'' +
                 ", num=" + num +
+                ", kemuSta=" + kemuSta +
                 '}';
     }
 }

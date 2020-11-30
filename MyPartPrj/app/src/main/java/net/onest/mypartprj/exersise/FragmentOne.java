@@ -89,11 +89,11 @@ public class FragmentOne extends Fragment {
         });
         //设置一些死数据
         mQList = new ArrayList<>();
-        QuestionBank q1 = new QuestionBank("中国近代史",3);
-        QuestionBank q2 = new QuestionBank("马克思主义理论",2);
-        QuestionBank q3 = new QuestionBank("毛泽东思想",2);
-        QuestionBank q4 = new QuestionBank("邓小平理论",6);
-        QuestionBank q5 = new QuestionBank("新社会主义",2);
+        QuestionBank q1 = new QuestionBank("中国近代史",3,1);
+        QuestionBank q2 = new QuestionBank("马克思主义理论",2,1);
+        QuestionBank q3 = new QuestionBank("毛泽东思想",2,1);
+        QuestionBank q4 = new QuestionBank("邓小平理论",6,1);
+        QuestionBank q5 = new QuestionBank("新社会主义",2,1);
         mQList.add(q1);
         mQList.add(q2);
         mQList.add(q3);
