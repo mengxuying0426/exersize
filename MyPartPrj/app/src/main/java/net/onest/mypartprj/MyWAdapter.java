@@ -20,7 +20,7 @@ public class MyWAdapter extends BaseAdapter {
     private LayoutInflater layoutinflater;//视图容器，用来导入布局
 
     static class ViewHolder {
-        private TextView tvKemu;
+        private TextView tvCuotiKu;
         private TextView tvTiNum;
         private Button btnStartTi;
     }
@@ -54,13 +54,13 @@ public class MyWAdapter extends BaseAdapter {
         View view;
         if (convertView == null) {
             holder= new ViewHolder();
-            view= layoutinflater.inflate(R.layout.item_list_app, null);
+            view= layoutinflater.inflate(R.layout.item_list_wrong, null);
             //获取控件
-            holder.tvKemu = view.findViewById(R.id.tv_kemu);
+            holder.tvCuotiKu = view.findViewById(R.id.tv_cuotiku);
             holder.tvTiNum = view.findViewById(R.id.tv_ti_num);
             holder.btnStartTi = view.findViewById(R.id.btn_start_ti);
             view.setTag(holder);
-            holder.tvKemu.setText(mQList.get(position).getCourse());
+            holder.tvCuotiKu.setText(mQList.get(position).getCourse());
             holder.tvTiNum.setText(mQList.get(position).getNum()+"");
             Log.i("mxy",mQList.get(position).getCourse()+mQList.get(position).getNum());
             holder.btnStartTi.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +75,7 @@ public class MyWAdapter extends BaseAdapter {
         }else{
             view = convertView;
             holder = (ViewHolder) view.getTag();
-            holder.tvKemu.setText(mQList.get(position).getCourse());
+            holder.tvCuotiKu.setText(mQList.get(position).getCourse());
             holder.tvTiNum.setText(mQList.get(position).getNum()+"");
             Log.i("mxy",mQList.get(position).getCourse()+mQList.get(position).getNum());
             holder.btnStartTi.setOnClickListener(new View.OnClickListener() {
