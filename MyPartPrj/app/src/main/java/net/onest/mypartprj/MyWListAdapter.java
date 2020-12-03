@@ -76,7 +76,7 @@ public class MyWListAdapter extends BaseAdapter {
                     Intent intent = new Intent();
                     intent.setClass(myContext, WrongDetailActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
-                    intent.putExtra("fenlei",mQList.get(position).getStem()+"&"+mQList.get(position).getKeyNum());
+                    intent.putExtra("fenlei",mQList.get(position).getStem()+"&"+mQList.get(position).getKeyNum()+"&"+position);
                     myContext.startActivity(intent);
                 }
             });

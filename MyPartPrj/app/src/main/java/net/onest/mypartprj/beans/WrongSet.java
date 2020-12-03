@@ -1,11 +1,10 @@
 package net.onest.mypartprj.beans;
 
-public class QuestionBank {
+public class WrongSet {
     private int id;
     private String username;
     private String kemu;
-    private int tinum;
-    private int kemuSta;
+    private int kemusta;
 
     public int getId() {
         return id;
@@ -31,47 +30,31 @@ public class QuestionBank {
         this.kemu = kemu;
     }
 
-    public int getTinum() {
-        return tinum;
+    public int getKemusta() {
+        return kemusta;
     }
 
-    public void setTinum(int tinum) {
-        this.tinum = tinum;
+    public void setKemusta(int kemusta) {
+        this.kemusta = kemusta;
     }
 
-    public int getKemuSta() {
-        return kemuSta;
-    }
-
-    public void setKemuSta(int kemuSta) {
-        this.kemuSta = kemuSta;
-    }
-
-    public QuestionBank() {
-    }
-
-    public QuestionBank(String kemu, int tinum, int kemuSta) {
-        this.kemu = kemu;
-        this.tinum = tinum;
-        this.kemuSta = kemuSta;
-    }
-
-    public QuestionBank(int id, String username, String kemu, int tinum, int kemuSta) {
+    public WrongSet(int id, String username, String kemu, int kemusta) {
         this.id = id;
         this.username = username;
         this.kemu = kemu;
-        this.tinum = tinum;
-        this.kemuSta = kemuSta;
+        this.kemusta = kemusta;
+    }
+
+    public WrongSet() {
     }
 
     @Override
     public String toString() {
-        return "QuestionBank{" +
+        return "WrongSet{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", kemu='" + kemu + '\'' +
-                ", tinum=" + tinum +
-                ", kemuSta=" + kemuSta +
+                ", kemusta=" + kemusta +
                 '}';
     }
 }

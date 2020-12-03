@@ -60,29 +60,32 @@ public class MyQAdapter extends BaseAdapter {
             holder.tvTiNum = view.findViewById(R.id.tv_ti_num);
             holder.btnStartTi = view.findViewById(R.id.btn_start_ti);
             view.setTag(holder);
-            holder.tvKemu.setText(mQList.get(position).getCourse());
-            holder.tvTiNum.setText(mQList.get(position).getNum()+"");
-            Log.i("mxy",mQList.get(position).getCourse()+mQList.get(position).getNum());
+            holder.tvKemu.setText(mQList.get(position).getKemu());
+            holder.tvTiNum.setText(mQList.get(position).getTinum()+"");
+            Log.i("mxy",mQList.get(position).getKemu()+mQList.get(position).getTinum());
             holder.btnStartTi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent();
                     intent.setClass(myContext, ExerciseActivity.class);
-                    intent.putExtra("fenlei",mQList.get(position).getCourse()+"&"+mQList.get(position).getNum());
+                    intent.putExtra("fenlei",mQList.get(position).getTinum()+"&"+mQList.get(position).getKemu());
+//                    intent.putExtra("fenlei",mQList.get(position).getKemu()+"&"+mQList.get(position).getTinum()+"&"+mQList.get(position).getKemuSta());
                     myContext.startActivity(intent);
                 }
             });
         }else{
             view = convertView;
             holder = (ViewHolder) view.getTag();
-            holder.tvKemu.setText(mQList.get(position).getCourse());
-            holder.tvTiNum.setText(mQList.get(position).getNum()+"");
-            Log.i("mxy",mQList.get(position).getCourse()+mQList.get(position).getNum());
+            holder.tvKemu.setText(mQList.get(position).getKemu());
+            holder.tvTiNum.setText(mQList.get(position).getTinum()+"");
+            Log.i("mxy",mQList.get(position).getKemu()+mQList.get(position).getTinum());
             holder.btnStartTi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent();
                     intent.setClass(myContext, ExerciseActivity.class);
+                    intent.putExtra("fenlei",mQList.get(position).getTinum()+"&"+mQList.get(position).getKemu());
+//                    intent.putExtra("fenlei",mQList.get(position).getKemu()+"&"+mQList.get(position).getTinum()+"&"+mQList.get(position).getKemuSta());
                     myContext.startActivity(intent);
                 }
             });

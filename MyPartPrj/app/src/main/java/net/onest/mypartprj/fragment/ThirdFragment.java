@@ -1,5 +1,6 @@
 package net.onest.mypartprj.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import net.onest.mypartprj.R;
+import net.onest.mypartprj.VIPYueBaoActivity;
 
 
 public class ThirdFragment extends Fragment {
@@ -32,18 +34,21 @@ public class ThirdFragment extends Fragment {
         btnReg.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick (View v){
-                EditText etnum1 = v.findViewById(R.id.et_num1);
-                EditText etnum2 = v.findViewById(R.id.et_num2);
-                EditText etnum3 = v.findViewById(R.id.et_num3);
-                String num1 = etnum1.getText().toString();
-                int num11 = Integer.parseInt(num1);
-                String num2 = etnum1.getText().toString();
-                int num12 = Integer.parseInt(num2);
-                String num3 = etnum1.getText().toString();
-                int num13 = Integer.parseInt(num3);
-                double result = num11*num12*num13;
-
-                Log.e("结果：", ""+result);
+                Intent intent = new Intent();
+                intent.setClass(view.getContext(), VIPYueBaoActivity.class);
+                view.getContext().startActivity(intent);
+//                EditText etnum1 = v.findViewById(R.id.et_num1);
+//                EditText etnum2 = v.findViewById(R.id.et_num2);
+//                EditText etnum3 = v.findViewById(R.id.et_num3);
+//                String num1 = etnum1.getText().toString();
+//                int num11 = Integer.parseInt(num1);
+//                String num2 = etnum1.getText().toString();
+//                int num12 = Integer.parseInt(num2);
+//                String num3 = etnum1.getText().toString();
+//                int num13 = Integer.parseInt(num3);
+//                double result = num11*num12*num13;
+//
+//                Log.e("结果：", ""+result);
 
             }
         });

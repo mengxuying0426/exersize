@@ -1,14 +1,19 @@
 package net.onest.mypartprj.beans;
 
 public class SingleChoice {
+    private String username;
+    private String kemu;
+    private int tiid;
     private String stem;
     private String optionA;
     private String optionB;
     private String optionC;
     private String optionD;
     private String correct;
-    private String analysis;
     private int keyNum;
+    private String analysis;
+    private int motista;
+
 
     public String getStem() {
         return stem;
@@ -74,7 +79,54 @@ public class SingleChoice {
         this.keyNum = keyNum;
     }
 
+    public int getTiid() {
+        return tiid;
+    }
+
+    public void setTiid(int tiid) {
+        this.tiid = tiid;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getKemu() {
+        return kemu;
+    }
+
+    public void setKemu(String kemu) {
+        this.kemu = kemu;
+    }
+
+    public int getMotista() {
+        return motista;
+    }
+
+    public void setMotista(int motista) {
+        this.motista = motista;
+    }
+
     public SingleChoice() {
+    }
+
+    public SingleChoice(String username, String kemu, int tiid, String stem, String optionA, String optionB, String optionC, String optionD, String correct, int keyNum, String analysis, int motista) {
+        this.username = username;
+        this.kemu = kemu;
+        this.tiid = tiid;
+        this.stem = stem;
+        this.optionA = optionA;
+        this.optionB = optionB;
+        this.optionC = optionC;
+        this.optionD = optionD;
+        this.correct = correct;
+        this.keyNum = keyNum;
+        this.analysis = analysis;
+        this.motista = motista;
     }
 
     public SingleChoice(String stem, String optionA, String optionB, String optionC, String optionD, String correct, String analysis, int keyNum) {
@@ -88,17 +140,32 @@ public class SingleChoice {
         this.keyNum = keyNum;
     }
 
+    public SingleChoice(String stem, String optionA, String optionB, String optionC, String optionD, String correct, int keyNum, String analysis) {
+        this.stem = stem;
+        this.optionA = optionA;
+        this.optionB = optionB;
+        this.optionC = optionC;
+        this.optionD = optionD;
+        this.correct = correct;
+        this.keyNum = keyNum;
+        this.analysis = analysis;
+    }
+
     @Override
     public String toString() {
         return "SingleChoice{" +
-                "stem='" + stem + '\'' +
+                "username='" + username + '\'' +
+                ", kemu='" + kemu + '\'' +
+                ", tiid=" + tiid +
+                ", stem='" + stem + '\'' +
                 ", optionA='" + optionA + '\'' +
                 ", optionB='" + optionB + '\'' +
                 ", optionC='" + optionC + '\'' +
                 ", optionD='" + optionD + '\'' +
                 ", correct='" + correct + '\'' +
-                ", analysis='" + analysis + '\'' +
                 ", keyNum=" + keyNum +
+                ", analysis='" + analysis + '\'' +
+                ", motista=" + motista +
                 '}';
     }
 }
