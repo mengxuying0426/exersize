@@ -21,11 +21,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ExerciseActivity" android:label="练习" />
         <activity android:name=".WrongTiActivity" android:label="错题集"/>
         <activity android:name=".WrongTiListActivity" android:label="错题列表"/>
         <activity android:name=".WrongDetailActivity" android:label="错题详情"/>
         <activity android:name=".VIPYueBaoActivity" android:label="会员月报"/>
+        <activity android:name=".ExerciseActivity" android:label="练习"/>
     </application>
 
 </manifest>

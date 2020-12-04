@@ -26,7 +26,7 @@
             android:layout_margin="20dp"
             android:orientation="vertical">
             <TextView
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:id="@+id/tv_opt"
                 android:layout_width="wrap_content"
@@ -35,7 +35,7 @@
                 android:textColor="@color/colorSel"
                 android:textSize="18sp"/>
             <TextView
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
                 android:id="@+id/tv_stem"
                 android:layout_width="wrap_content"
@@ -58,7 +58,7 @@
                 <LinearLayout
                     android:id="@+id/ll_optA"
                     android:layout_gravity="center"
-                    android:layout_width="320dp"
+                    android:layout_width="290dp"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:background="@drawable/item_style">
@@ -94,7 +94,7 @@
                 <LinearLayout
                     android:id="@+id/ll_optB"
                     android:layout_gravity="center"
-                    android:layout_width="320dp"
+                    android:layout_width="290dp"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:background="@drawable/item_style">
@@ -130,7 +130,7 @@
                 <LinearLayout
                     android:id="@+id/ll_optC"
                     android:layout_gravity="center"
-                    android:layout_width="320dp"
+                    android:layout_width="290dp"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:background="@drawable/item_style">
@@ -166,7 +166,7 @@
                 <LinearLayout
                     android:id="@+id/ll_optD"
                     android:layout_gravity="center"
-                    android:layout_width="320dp"
+                    android:layout_width="290dp"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:background="@drawable/item_style">
@@ -190,7 +190,7 @@
 
             <LinearLayout
                 android:layout_marginTop="25dp"
-                android:layout_width="320dp"
+                android:layout_width="290dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:orientation="vertical">
@@ -203,7 +203,7 @@
                 <TextView
                     android:id="@+id/tv_analysis"
                     android:layout_gravity="center"
-                    android:layout_width="300dp"
+                    android:layout_width="280dp"
                     android:textColor="#777"
                     android:layout_height="wrap_content"
                     android:textSize="22sp"/>

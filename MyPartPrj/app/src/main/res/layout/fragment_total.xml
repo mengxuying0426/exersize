@@ -12,7 +12,7 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        app:tabIndicatorColor="#CC33FF"
+        app:tabIndicatorColor="@color/colorPrimary"
         app:tabIndicatorHeight="5dp"
         app:tabTextColor="#000"
         app:tabSelectedTextColor="@color/colorPrimary"

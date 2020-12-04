@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#00EEEE</color>
+    <color name="colorPrimary">#ffdd99</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorBlue">#00EEEE</color>
@@ -10,4 +10,5 @@
     <color name="colorPopupLayoutBg">#007FFF</color>
     <color name="colorSel">#4169E1</color>
     <color name="colorNoSel">#777</color>
+    <color name="color3">#ffdd99</color>
 </resources>

@@ -1,6 +1,5 @@
 package net.onest.mypartprj.exersise;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -9,7 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -19,8 +17,6 @@ import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 
-import net.onest.mypartprj.ExerciseActivity;
-import net.onest.mypartprj.MyQAdapter;
 import net.onest.mypartprj.MyWAdapter;
 import net.onest.mypartprj.R;
 import net.onest.mypartprj.beans.QuestionBank;
@@ -98,7 +94,7 @@ public class FragmentSecond extends Fragment {
         QuestionBank q2 = new QuestionBank("马克思主义理论",2,1);
         QuestionBank q3 = new QuestionBank("毛泽东思想",2,1);
         QuestionBank q4 = new QuestionBank("邓小平理论",6,1);
-        QuestionBank q5 = new QuestionBank("新社会主义",2,1);
+        QuestionBank q5 = new QuestionBank("新社会主义理论",2,1);
         mQList.add(q1);
         mQList.add(q2);
         mQList.add(q3);

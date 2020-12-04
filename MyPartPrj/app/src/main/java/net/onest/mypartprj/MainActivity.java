@@ -32,14 +32,18 @@ public class MainActivity extends AppCompatActivity {
         fragmentTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
 
         //创建内容页面TabSpec对象
-        TabHost.TabSpec tab1 = fragmentTabHost.newTabSpec("first_tab").setIndicator(getTabSpecView("first_tab", "测试", R.drawable.first));
+        TabHost.TabSpec tab1 = fragmentTabHost.newTabSpec("first_tab").setIndicator(getTabSpecView("first_tab", "首页", R.mipmap.home));
         fragmentTabHost.addTab(tab1, FirstFragment.class, null);
 
-        TabHost.TabSpec tab2 = fragmentTabHost.newTabSpec("second_tab").setIndicator(getTabSpecView("second_tab", "题库", R.drawable.second));
-        fragmentTabHost.addTab(tab2, SecondFragment.class, null);
+        TabHost.TabSpec tab2 = fragmentTabHost.newTabSpec("second_tab").setIndicator(getTabSpecView("second_tab", "院校", R.mipmap.school));
+        fragmentTabHost.addTab(tab2, ThirdFragment.class, null);
 
-        TabHost.TabSpec tab3 = fragmentTabHost.newTabSpec("third_tab").setIndicator(getTabSpecView("third_tab", "嘻嘻", R.drawable.third));
+        TabHost.TabSpec tab3 = fragmentTabHost.newTabSpec("third_tab").setIndicator(getTabSpecView("third_tab", "计划", R.mipmap.plan));
         fragmentTabHost.addTab(tab3, ThirdFragment.class, null);
+        TabHost.TabSpec tab4 = fragmentTabHost.newTabSpec("four_tab").setIndicator(getTabSpecView("four_tab", "题库", R.drawable.work));
+        fragmentTabHost.addTab(tab4, SecondFragment.class, null);
+        TabHost.TabSpec tab5 = fragmentTabHost.newTabSpec("five_tab").setIndicator(getTabSpecView("five_tab", "音乐", R.mipmap.music));
+        fragmentTabHost.addTab(tab5, ThirdFragment.class, null);
 
         //处理fragmentTabHost的选项切换事件
         fragmentTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
@@ -48,37 +52,48 @@ public class MainActivity extends AppCompatActivity {
                 //修改图片和文字颜色
                 switch (tabId) {
                     case "first_tab":
-                        imageViewMap.get("first_tab").setImageResource(R.drawable.first1);
-                        imageViewMap.get("second_tab").setImageResource(R.drawable.second);
-                        imageViewMap.get("third_tab").setImageResource(R.drawable.third);
-                        textViewMap.get("first_tab").setTextColor(getResources().getColor(R.color.colorBlue));
-                        textViewMap.get("second_tab").setTextColor(getResources().getColor(android.R.color.black));
-                        textViewMap.get("third_tab").setTextColor(getResources().getColor(android.R.color.black));
+                        imageViewMap.get("first_tab").setImageResource(R.mipmap.home_selected);
+                        imageViewMap.get("second_tab").setImageResource(R.mipmap.school);
+                        imageViewMap.get("third_tab").setImageResource(R.mipmap.plan);
+                        imageViewMap.get("four_tab").setImageResource(R.drawable.work_selected);
+                        imageViewMap.get("five_tab").setImageResource(R.drawable.music);
                         break;
                     case "second_tab":
-                        imageViewMap.get("second_tab").setImageResource(R.drawable.second1);
-                        imageViewMap.get("first_tab").setImageResource(R.drawable.first);
-                        imageViewMap.get("third_tab").setImageResource(R.drawable.third);
-                        textViewMap.get("second_tab").setTextColor(getResources().getColor(R.color.colorBlue));
-                        textViewMap.get("first_tab").setTextColor(getResources().getColor(android.R.color.black));
-                        textViewMap.get("third_tab").setTextColor(getResources().getColor(android.R.color.black));
+                        imageViewMap.get("first_tab").setImageResource(R.mipmap.home);
+                        imageViewMap.get("second_tab").setImageResource(R.mipmap.school_selected);
+                        imageViewMap.get("third_tab").setImageResource(R.mipmap.plan);
+                        imageViewMap.get("four_tab").setImageResource(R.drawable.work_selected);
+                        imageViewMap.get("five_tab").setImageResource(R.drawable.music);
                         break;
                     case "third_tab":
-                        imageViewMap.get("third_tab").setImageResource(R.drawable.third1);
-                        imageViewMap.get("first_tab").setImageResource(R.drawable.first);
-                        imageViewMap.get("second_tab").setImageResource(R.drawable.second);
-                        textViewMap.get("third_tab").setTextColor(getResources().getColor(R.color.colorBlue));
-                        textViewMap.get("second_tab").setTextColor(getResources().getColor(android.R.color.black));
-                        textViewMap.get("first_tab").setTextColor(getResources().getColor(android.R.color.black));
+                        imageViewMap.get("first_tab").setImageResource(R.mipmap.home);
+                        imageViewMap.get("second_tab").setImageResource(R.mipmap.school);
+                        imageViewMap.get("third_tab").setImageResource(R.mipmap.plan_selected);
+                        imageViewMap.get("four_tab").setImageResource(R.drawable.work_selected);
+                        imageViewMap.get("five_tab").setImageResource(R.drawable.music);
+                        break;
+                    case "four_tab":
+                        imageViewMap.get("first_tab").setImageResource(R.mipmap.home);
+                        imageViewMap.get("second_tab").setImageResource(R.mipmap.school);
+                        imageViewMap.get("third_tab").setImageResource(R.mipmap.plan);
+                        imageViewMap.get("four_tab").setImageResource(R.drawable.work);
+                        imageViewMap.get("five_tab").setImageResource(R.drawable.music);
+                        break;
+                    case "five_tab":
+                        imageViewMap.get("first_tab").setImageResource(R.mipmap.home);
+                        imageViewMap.get("second_tab").setImageResource(R.mipmap.school);
+                        imageViewMap.get("third_tab").setImageResource(R.mipmap.plan);
+                        imageViewMap.get("four_tab").setImageResource(R.drawable.work_selected);
+                        imageViewMap.get("five_tab").setImageResource(R.drawable.music_selected);
                         break;
                 }
             }
         });
 
         //设置默认选项卡
-        fragmentTabHost.setCurrentTab(0);
-        imageViewMap.get("first_tab").setImageResource(R.drawable.first);
-        textViewMap.get("first_tab").setTextColor(getResources().getColor(R.color.colorBlue));
+        fragmentTabHost.setCurrentTab(3);
+        imageViewMap.get("four_tab").setImageResource(R.drawable.work);
+//        textViewMap.get("four_tab").setTextColor(getResources().getColor(R.color.color3));
 
 
     }
