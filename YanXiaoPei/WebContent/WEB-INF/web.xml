@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
   <display-name>YanXiaoPei</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
@@ -10,72 +10,64 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
-    <servlet-name>DownloadTiku</servlet-name>
-    <servlet-class>net.onest.mxy.servlet.DownloadTiku</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DownloadTiku</servlet-name>
-    <url-pattern>/downloadstiku</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>DownloadChoiceServlet</servlet-name>
-    <servlet-class>net.onest.mxy.servlet.DownloadChoiceServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DownloadChoiceServlet</servlet-name>
-    <url-pattern>/downloadsMoChoices</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>DownloadsZiChoice</servlet-name>
-    <servlet-class>net.onest.mxy.servlet.DownloadsZiChoice</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DownloadsZiChoice</servlet-name>
-    <url-pattern>/downloadsZiChoices</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>DownloadCuTiServlet</servlet-name>
-    <servlet-class>net.onest.mxy.servlet.DownloadCuTiServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DownloadCuTiServlet</servlet-name>
-    <url-pattern>/downloadscuotiku</url-pattern>
-  </servlet-mapping>
-  <servlet>
     <servlet-name>CollectOperation</servlet-name>
-    <servlet-class>net.onest.mxy.servlet.CollectOperation</servlet-class>
+    <servlet-class>com.example.servlet2.CollectOperation</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>CollectOperation</servlet-name>
     <url-pattern>/shoucangcaozuo</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>WrongOperation</servlet-name>
-    <servlet-class>net.onest.mxy.servlet.WrongOperation</servlet-class>
+    <servlet-name>DownloadChoiceServlet</servlet-name>
+    <servlet-class>com.example.servlet2.DownloadChoiceServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>WrongOperation</servlet-name>
-    <url-pattern>/cuoticaozuo</url-pattern>
+    <servlet-name>DownloadChoiceServlet</servlet-name>
+    <url-pattern>/downloadsMoChoices</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>DownloadCuTiServlet</servlet-name>
+    <servlet-class>com.example.servlet2.DownloadCuTiServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DownloadCuTiServlet</servlet-name>
+    <url-pattern>/downloadscuotiku</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>DownloadDetailServlet</servlet-name>
+    <servlet-class>com.example.servlet2.DownloadDetailServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DownloadDetailServlet</servlet-name>
+    <url-pattern>/downloadsdetail</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>DownloadsCuoChoiceServlet</servlet-name>
-    <servlet-class>net.onest.mxy.servlet.DownloadsCuoChoiceServlet</servlet-class>
+    <servlet-class>com.example.servlet2.DownloadsCuoChoiceServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DownloadsCuoChoiceServlet</servlet-name>
     <url-pattern>/downloadsCuoChoice</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>DownloadDetailServlet</servlet-name>
-    <servlet-class>net.onest.mxy.servlet.DownloadDetailServlet</servlet-class>
+    <servlet-name>DownloadTiku</servlet-name>
+    <servlet-class>com.example.servlet2.DownloadTiku</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>DownloadDetailServlet</servlet-name>
-    <url-pattern>/downloadsdetail</url-pattern>
+    <servlet-name>DownloadTiku</servlet-name>
+    <url-pattern>/downloadstiku</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
+    <servlet-name>WrongOperation</servlet-name>
+    <servlet-class>com.example.servlet2.WrongOperation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WrongOperation</servlet-name>
+    <url-pattern>/cuoticaozuo</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>WrongTiCollection</servlet-name>
-    <servlet-class>net.onest.mxy.servlet.WrongTiCollection</servlet-class>
+    <servlet-class>com.example.servlet2.WrongTiCollection</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>WrongTiCollection</servlet-name>
