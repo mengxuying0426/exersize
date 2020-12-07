@@ -68,8 +68,7 @@ public class MyQAdapter extends BaseAdapter {
                 public void onClick(View v) {
                     Intent intent = new Intent();
                     intent.setClass(myContext, ExerciseActivity.class);
-                    intent.putExtra("fenlei",mQList.get(position).getTinum()+"&"+mQList.get(position).getKemu());
-//                    intent.putExtra("fenlei",mQList.get(position).getKemu()+"&"+mQList.get(position).getTinum()+"&"+mQList.get(position).getKemuSta());
+                    intent.putExtra("fenlei",mQList.get(position).getKemu()+"&"+mQList.get(position).getTinum()+"&"+mQList.get(position).getKemuSta());
                     myContext.startActivity(intent);
                 }
             });
@@ -84,8 +83,7 @@ public class MyQAdapter extends BaseAdapter {
                 public void onClick(View v) {
                     Intent intent = new Intent();
                     intent.setClass(myContext, ExerciseActivity.class);
-                    intent.putExtra("fenlei",mQList.get(position).getTinum()+"&"+mQList.get(position).getKemu());
-//                    intent.putExtra("fenlei",mQList.get(position).getKemu()+"&"+mQList.get(position).getTinum()+"&"+mQList.get(position).getKemuSta());
+                    intent.putExtra("fenlei",mQList.get(position).getKemu()+"&"+mQList.get(position).getTinum()+"&"+mQList.get(position).getKemuSta());
                     myContext.startActivity(intent);
                 }
             });

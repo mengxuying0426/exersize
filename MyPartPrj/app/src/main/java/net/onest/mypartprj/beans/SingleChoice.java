@@ -13,6 +13,8 @@ public class SingleChoice {
     private int keyNum;
     private String analysis;
     private int motista;
+    private int iscollect;
+    private int iscuoti;
 
 
     public String getStem() {
@@ -111,6 +113,22 @@ public class SingleChoice {
         this.motista = motista;
     }
 
+    public int getIscollect() {
+        return iscollect;
+    }
+
+    public void setIscollect(int iscollect) {
+        this.iscollect = iscollect;
+    }
+
+    public int getIscuoti() {
+        return iscuoti;
+    }
+
+    public void setIscuoti(int iscuoti) {
+        this.iscuoti = iscuoti;
+    }
+
     public SingleChoice() {
     }
 
@@ -151,6 +169,22 @@ public class SingleChoice {
         this.analysis = analysis;
     }
 
+    public SingleChoice(String username, String kemu, int tiid, String stem, String optionA, String optionB, String optionC, String optionD, String correct, int keyNum, String analysis, int motista, int iscollect, int iscuoti) {
+        this.username = username;
+        this.kemu = kemu;
+        this.tiid = tiid;
+        this.stem = stem;
+        this.optionA = optionA;
+        this.optionB = optionB;
+        this.optionC = optionC;
+        this.optionD = optionD;
+        this.correct = correct;
+        this.keyNum = keyNum;
+        this.analysis = analysis;
+        this.motista = motista;
+        this.iscollect = iscollect;
+        this.iscuoti = iscuoti;
+    }
     @Override
     public String toString() {
         return "SingleChoice{" +
@@ -166,6 +200,8 @@ public class SingleChoice {
                 ", keyNum=" + keyNum +
                 ", analysis='" + analysis + '\'' +
                 ", motista=" + motista +
+                ", iscollect=" + iscollect +
+                ", iscuoti=" + iscuoti +
                 '}';
     }
 }

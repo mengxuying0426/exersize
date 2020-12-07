@@ -11,7 +11,7 @@
         android:orientation="horizontal"
         android:background="@drawable/item_style1"
         android:layout_gravity="center">
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginLeft="10dp"
@@ -19,7 +19,7 @@
             <TextView
                 android:id="@+id/tv_cuotiku"
                 android:layout_marginTop="25dp"
-                android:layout_width="wrap_content"
+                android:layout_width="290dp"
                 android:layout_height="wrap_content"
                 android:text="中国近代史"
                 android:textSize="25dp"
@@ -32,10 +32,11 @@
                 android:layout_alignParentRight="true"
                 android:text="开始复习"
                 android:layout_marginTop="25dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:textColor="#fff"
                 android:textStyle="bold"/>
-        </RelativeLayout>
+        </LinearLayout>
 
 <!--        <RelativeLayout-->
 <!--            android:layout_width="match_parent"-->

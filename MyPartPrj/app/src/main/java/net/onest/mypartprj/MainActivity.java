@@ -9,9 +9,9 @@ import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
-import net.onest.mypartprj.fragment.FirstFragment;
 import net.onest.mypartprj.exersise.SecondFragment;
-import net.onest.mypartprj.fragment.ThirdFragment;
+import net.onest.mypartprj.fragment.Fragment1;
+import net.onest.mypartprj.fragment.YuebaoFragment;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,17 +33,17 @@ public class MainActivity extends AppCompatActivity {
 
         //创建内容页面TabSpec对象
         TabHost.TabSpec tab1 = fragmentTabHost.newTabSpec("first_tab").setIndicator(getTabSpecView("first_tab", "首页", R.mipmap.home));
-        fragmentTabHost.addTab(tab1, FirstFragment.class, null);
+        fragmentTabHost.addTab(tab1, Fragment1.class, null);
 
         TabHost.TabSpec tab2 = fragmentTabHost.newTabSpec("second_tab").setIndicator(getTabSpecView("second_tab", "院校", R.mipmap.school));
-        fragmentTabHost.addTab(tab2, ThirdFragment.class, null);
+        fragmentTabHost.addTab(tab2, YuebaoFragment.class, null);
 
         TabHost.TabSpec tab3 = fragmentTabHost.newTabSpec("third_tab").setIndicator(getTabSpecView("third_tab", "计划", R.mipmap.plan));
-        fragmentTabHost.addTab(tab3, ThirdFragment.class, null);
+        fragmentTabHost.addTab(tab3, YuebaoFragment.class, null);
         TabHost.TabSpec tab4 = fragmentTabHost.newTabSpec("four_tab").setIndicator(getTabSpecView("four_tab", "题库", R.drawable.work));
         fragmentTabHost.addTab(tab4, SecondFragment.class, null);
         TabHost.TabSpec tab5 = fragmentTabHost.newTabSpec("five_tab").setIndicator(getTabSpecView("five_tab", "音乐", R.mipmap.music));
-        fragmentTabHost.addTab(tab5, ThirdFragment.class, null);
+        fragmentTabHost.addTab(tab5, YuebaoFragment.class, null);
 
         //处理fragmentTabHost的选项切换事件
         fragmentTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {

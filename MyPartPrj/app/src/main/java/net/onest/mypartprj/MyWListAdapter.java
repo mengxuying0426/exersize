@@ -2,6 +2,7 @@ package net.onest.mypartprj;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.SpannableString;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,23 +14,24 @@ import android.widget.TextView;
 
 import net.onest.mypartprj.beans.QuestionBank;
 import net.onest.mypartprj.beans.SingleChoice;
+import net.onest.mypartprj.beans.WrongTi;
+import net.onest.mypartprj.utils.StringUtils;
 
 import java.util.List;
 
 public class MyWListAdapter extends BaseAdapter {
     private Context myContext;
-    private List<SingleChoice> mQList;
+    private List<WrongTi> mQList;
     private LayoutInflater layoutinflater;//视图容器，用来导入布局
 
     static class ViewHolder {
-        private TextView tvOpt;
         private TextView tvStemItem;
-        private LinearLayout llDetail;
+        private Button btnDetail;
     }
     /*
      * 实例化Adapter
      */
-    public MyWListAdapter(Context context, List<SingleChoice> dataSet)
+    public MyWListAdapter(Context context, List<WrongTi> dataSet)
     {
         this.myContext = context;
         this.mQList = dataSet;
@@ -58,46 +60,47 @@ public class MyWListAdapter extends BaseAdapter {
             holder= new ViewHolder();
             view= layoutinflater.inflate(R.layout.wrong_item, null);
             //获取控件
-            holder.tvOpt = view.findViewById(R.id.tv_opt);
             holder.tvStemItem = view.findViewById(R.id.tv_stem_item);
-            holder.llDetail = view.findViewById(R.id.ll_detail);
+            holder.btnDetail = view.findViewById(R.id.btn_detail);
             view.setTag(holder);
-            if(mQList.get(position).getKeyNum()>1){
-                holder.tvOpt.setText("(多选题)");
+            String opt = null;
+            if(mQList.get(position).getKeynum()>1){
+                opt = "(多选题)";
             }else {
-                holder.tvOpt.setText("(单选题)");
+               opt = "(单选题)";
             }
+            SpannableString highlightText = StringUtils.highlight(myContext, opt+mQList.get(position).getStem(), opt, "#4169E1", 1, 1);
+            holder.tvStemItem.setText(highlightText);
 
-            holder.tvStemItem.setText(mQList.get(position).getStem());
-
-            holder.llDetail.setOnClickListener(new View.OnClickListener() {
+            holder.btnDetail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent();
                     intent.setClass(myContext, WrongDetailActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
-                    intent.putExtra("fenlei",mQList.get(position).getStem()+"&"+mQList.get(position).getKeyNum()+"&"+position);
+                    intent.putExtra("fenlei",mQList.get(position).getKeynum()+"&"+mQList.get(position).getId()+"&"+mQList.get(position).getTista());
                     myContext.startActivity(intent);
                 }
             });
         }else{
             view = convertView;
             holder = (ViewHolder) view.getTag();
-            if(mQList.get(position).getKeyNum()>1){
-                holder.tvOpt.setText("(多选题)");
+            String opt = null;
+            if(mQList.get(position).getKeynum()>1){
+                opt = "(多选题)";
             }else {
-                holder.tvOpt.setText("(单选题)");
+                opt = "(单选题)";
             }
+            SpannableString highlightText = StringUtils.highlight(myContext, opt+mQList.get(position).getStem(), opt, "#4169E1", 1, 1);
+            holder.tvStemItem.setText(highlightText);
 
-            holder.tvStemItem.setText(mQList.get(position).getStem());
-
-            holder.llDetail.setOnClickListener(new View.OnClickListener() {
+            holder.btnDetail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent();
                     intent.setClass(myContext, WrongDetailActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
-                    intent.putExtra("fenlei",mQList.get(position).getStem()+"&"+mQList.get(position).getKeyNum());
+                    intent.putExtra("fenlei",mQList.get(position).getKeynum()+"&"+mQList.get(position).getId()+"&"+mQList.get(position).getTista());
                     myContext.startActivity(intent);
                 }
             });

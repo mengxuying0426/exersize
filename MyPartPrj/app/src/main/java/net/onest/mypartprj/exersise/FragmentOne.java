@@ -60,22 +60,22 @@ public class FragmentOne extends Fragment {
             return view;
         }
         view = inflater.inflate(R.layout.fragment1,container,false);
-//        myHandler = new Handler(Looper.getMainLooper()){
-//            @Override
-//            public void handleMessage(@NonNull Message msg) {
-//                switch (msg.what){
-//                    case 1:
-//                        bankInfo = (BankInfo)msg.obj;
-//                        if(null!=bankInfo){
-//                            mQList = bankInfo.getQuestionBanks();
-//                            //绑定Adapter
-//                            myQAdapter = new MyQAdapter(view.getContext(),mQList);
-//                            swipeMenuListView.setAdapter(myQAdapter);
-//                        }
-//                        break;
-//                }
-//            }
-//        };
+        myHandler = new Handler(Looper.getMainLooper()){
+            @Override
+            public void handleMessage(@NonNull Message msg) {
+                switch (msg.what){
+                    case 1:
+                        bankInfo = (BankInfo)msg.obj;
+                        if(null!=bankInfo){
+                            mQList = bankInfo.getQuestionBanks();
+                            //绑定Adapter
+                            myQAdapter = new MyQAdapter(view.getContext(),mQList);
+                            swipeMenuListView.setAdapter(myQAdapter);
+                        }
+                        break;
+                }
+            }
+        };
         //获取控件
         SwipeMenuCreator creator = new SwipeMenuCreator() {
             @Override
@@ -120,25 +120,25 @@ public class FragmentOne extends Fragment {
 
             }
         });
-        //设置一些死数据
-        mQList = new ArrayList<>();
-        QuestionBank q1 = new QuestionBank(1,"cxk","马克思主义基本原理概论",3,1);
-        QuestionBank q2 = new QuestionBank(2,"cxk","中国近代史纲要",6,1);
-        QuestionBank q3 = new QuestionBank(3,"cxk","毛泽东思想和中国特色社会主义理论体系概论",3,1);
-        QuestionBank q4 = new QuestionBank(4,"cxk","思想道德修养与法律基础",3,1);
-        QuestionBank q5 = new QuestionBank(4,"cxk","马克思主义基本原理概论",3,1);
-        mQList.add(q1);
-        mQList.add(q2);
-        mQList.add(q3);
-        mQList.add(q4);
-        mQList.add(q5);
-        //绑定Adapter
-        myQAdapter = new MyQAdapter(view.getContext(),mQList);
-        swipeMenuListView.setAdapter(myQAdapter);
+//        //设置一些死数据
+//        mQList = new ArrayList<>();
+//        QuestionBank q1 = new QuestionBank(1,"cxk","马克思主义基本原理概论",3,1);
+//        QuestionBank q2 = new QuestionBank(2,"cxk","中国近代史纲要",6,1);
+//        QuestionBank q3 = new QuestionBank(3,"cxk","毛泽东思想和中国特色社会主义理论体系概论",3,1);
+//        QuestionBank q4 = new QuestionBank(4,"cxk","思想道德修养与法律基础",3,1);
+//        QuestionBank q5 = new QuestionBank(4,"cxk","马克思主义基本原理概论",3,1);
+//        mQList.add(q1);
+//        mQList.add(q2);
+//        mQList.add(q3);
+//        mQList.add(q4);
+//        mQList.add(q5);
+//        //绑定Adapter
+//        myQAdapter = new MyQAdapter(view.getContext(),mQList);
+//        swipeMenuListView.setAdapter(myQAdapter);
 
-//        String url = ServerConfig.SEVER_ADDR+"/"
-//                +ServerConfig.NET_HOME+"/downloadstiku";
-//        downloadTiku(url);
+        String url = ServerConfig.SEVER_ADDR+"/"
+                +ServerConfig.NET_HOME+"/downloadstiku";
+        downloadTiku(url);
 
 
 
