@@ -66,10 +66,19 @@ public class MyWAdapter extends BaseAdapter {
             holder.btnStartTi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent();
-                    intent.setClass(myContext, WrongTiListActivity.class);
-                    intent.putExtra("tikufenlei",mQList.get(position).getKemu()+"&"+mQList.get(position).getKemusta());
-                    myContext.startActivity(intent);
+                    if(mQList.get(position).getKemusta()==1){
+                        Intent intent = new Intent();
+                        intent.setClass(myContext, WrongTiListActivity.class);
+                        intent.putExtra("tikufenlei",mQList.get(position).getKemu()+"&"+mQList.get(position).getKemusta());
+                        myContext.startActivity(intent);
+                    }else {
+                        Intent intent = new Intent();
+                        intent.setClass(myContext, WrongGridActivity.class);
+                        intent.putExtra("tikufenlei",mQList.get(position).getKemu()+"&"+mQList.get(position).getKemusta());
+                        myContext.startActivity(intent);
+                        //错题自定义题加载缺
+                    }
+
                 }
             });
         }else{
@@ -81,10 +90,17 @@ public class MyWAdapter extends BaseAdapter {
             holder.btnStartTi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent();
-                    intent.setClass(myContext, WrongTiListActivity.class);
-                    intent.putExtra("tikufenlei",mQList.get(position).getKemu()+"&"+mQList.get(position).getKemusta());
-                    myContext.startActivity(intent);
+                    if(mQList.get(position).getKemusta()==1){
+                        Intent intent = new Intent();
+                        intent.setClass(myContext, WrongTiListActivity.class);
+                        intent.putExtra("tikufenlei",mQList.get(position).getKemu()+"&"+mQList.get(position).getKemusta());
+                        myContext.startActivity(intent);
+                    }else {
+                        Intent intent = new Intent();
+                        intent.setClass(myContext, WrongGridActivity.class);
+                        intent.putExtra("tikufenlei",mQList.get(position).getKemu()+"&"+mQList.get(position).getKemusta());
+                        myContext.startActivity(intent);
+                    }
                 }
             });
         }

@@ -25,6 +25,8 @@
         <activity android:name=".WrongDetailActivity" android:label="错题详情"/>
         <activity android:name=".VIPYueBaoActivity" android:label="会员月报"/>
         <activity android:name=".ExerciseActivity" android:label="练习"/>
+        <activity android:name=".DfActivity" android:label="自定义错题"/>
+        <activity android:name=".WrongGridActivity" android:label="自定义错题"/>
     </application>
 
 </manifest>

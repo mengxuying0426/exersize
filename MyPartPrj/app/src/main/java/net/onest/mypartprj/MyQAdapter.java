@@ -66,10 +66,18 @@ public class MyQAdapter extends BaseAdapter {
             holder.btnStartTi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent();
-                    intent.setClass(myContext, ExerciseActivity.class);
-                    intent.putExtra("fenlei",mQList.get(position).getKemu()+"&"+mQList.get(position).getTinum()+"&"+mQList.get(position).getKemuSta());
-                    myContext.startActivity(intent);
+                    if(mQList.get(position).getKemuSta()==1){
+                        Intent intent = new Intent();
+                        intent.setClass(myContext, ExerciseActivity.class);
+                        intent.putExtra("fenlei",mQList.get(position).getKemu()+"&"+mQList.get(position).getTinum()+"&"+mQList.get(position).getKemuSta());
+                        myContext.startActivity(intent);
+                    }else {
+                        Intent intent = new Intent();
+                        intent.setClass(myContext, DfActivity.class);
+                        intent.putExtra("fenlei",mQList.get(position).getKemu()+"&"+mQList.get(position).getTinum()+"&"+mQList.get(position).getKemuSta());
+                        myContext.startActivity(intent);
+                    }
+
                 }
             });
         }else{
@@ -81,10 +89,17 @@ public class MyQAdapter extends BaseAdapter {
             holder.btnStartTi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent();
-                    intent.setClass(myContext, ExerciseActivity.class);
-                    intent.putExtra("fenlei",mQList.get(position).getKemu()+"&"+mQList.get(position).getTinum()+"&"+mQList.get(position).getKemuSta());
-                    myContext.startActivity(intent);
+                    if(mQList.get(position).getKemuSta()==1){
+                        Intent intent = new Intent();
+                        intent.setClass(myContext, ExerciseActivity.class);
+                        intent.putExtra("fenlei",mQList.get(position).getKemu()+"&"+mQList.get(position).getTinum()+"&"+mQList.get(position).getKemuSta());
+                        myContext.startActivity(intent);
+                    }else {
+                        Intent intent = new Intent();
+                        intent.setClass(myContext, DfActivity.class);
+                        intent.putExtra("fenlei",mQList.get(position).getKemu()+"&"+mQList.get(position).getTinum()+"&"+mQList.get(position).getKemuSta());
+                        myContext.startActivity(intent);
+                    }
                 }
             });
         }
